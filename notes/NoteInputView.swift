@@ -1,0 +1,37 @@
+//
+//  NoteInputView.swift
+//  notes
+//
+//  Created by Josh Richards on 24/07/2024.
+//
+
+import SwiftUI
+
+struct NoteInputView: View {
+    @State private var inputText = "";
+    
+    func saveNote() {
+        print("Save")
+    }
+    
+    var body: some View {
+        HStack {
+            TextField("Enter Note", text: $inputText, axis: .vertical).lineLimit(10)
+            Button(action: saveNote) {
+                Image(systemName: "arrow.up")
+                    .foregroundColor(.white)
+                    .fontWeight(.bold)
+                    .padding(8)
+                    .background(Color.blue)
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+        }
+        .padding(8)
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+#Preview {
+    NoteInputView()
+}

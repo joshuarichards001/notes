@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct NoteInputView: View {
-    @State private var inputText = "";
+    @State private var inputText = ""
+    @FocusState private var isInputFocused: Bool
     var addNote: (NoteModel) -> Void
     
     var body: some View {
         HStack {
-            TextField("Enter Note", text: $inputText, axis: .vertical).lineLimit(10)
+            TextField("Enter Note", text: $inputText, axis: .vertical)
+                .lineLimit(10)
+                .focused($isInputFocused)
             Button(action: {
                 if !inputText.isEmpty {
                     let newNote = NoteModel(text: inputText)
@@ -32,6 +35,9 @@ struct NoteInputView: View {
         .padding(8)
         .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
+        .onAppear {
+            isInputFocused = true
+        }
     }
 }
 

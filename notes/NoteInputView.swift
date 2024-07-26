@@ -9,15 +9,18 @@ import SwiftUI
 
 struct NoteInputView: View {
     @State private var inputText = "";
-    
-    func saveNote() {
-        print("Save")
-    }
+    var addNote: (NoteModel) -> Void
     
     var body: some View {
         HStack {
             TextField("Enter Note", text: $inputText, axis: .vertical).lineLimit(10)
-            Button(action: saveNote) {
+            Button(action: {
+                if !inputText.isEmpty {
+                    let newNote = NoteModel(text: inputText)
+                    addNote(newNote)
+                    inputText = ""
+                }
+            }) {
                 Image(systemName: "arrow.up")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -33,5 +36,7 @@ struct NoteInputView: View {
 }
 
 #Preview {
-    NoteInputView()
+    NoteInputView(addNote: { note in
+        print("Note Added")
+    })
 }

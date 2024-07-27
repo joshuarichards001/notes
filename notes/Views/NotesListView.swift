@@ -40,5 +40,5 @@ struct NotesListView: View {
 
 #Preview {
   @MainActor in
-  NotesListView().previewWithNotes()
+  NotesListView().previewWithExampleNotes()
 }

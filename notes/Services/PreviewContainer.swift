@@ -21,6 +21,10 @@ struct PreviewContainer {
       fatalError("Could not create ModelContainer: \(error)")
     }
   }
+  
+  func addNote(note: NoteModel) {
+    container.mainContext.insert(note)
+  }
 
   func addExampleNotes() {
     let notes = [
@@ -34,13 +38,15 @@ struct PreviewContainer {
 
 @MainActor
 extension View {
-  func previewWithNotes(addExamples: Bool = true) -> some View {
+  func previewWithExampleNotes() -> some View {
     let container = PreviewContainer()
-    if addExamples {
-      container.addExampleNotes()
-    }
-    return
-      self
-      .modelContainer(container.container)
+    container.addExampleNotes()
+    return self.modelContainer(container.container)
+  }
+  
+  func previewWithNote(note: NoteModel) -> some View {
+    let container = PreviewContainer()
+    container.addNote(note: note)
+    return self.modelContainer(container.container)
   }
 }

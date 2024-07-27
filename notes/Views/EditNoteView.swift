@@ -37,7 +37,15 @@ struct EditNoteView: View {
 }
 
 #Preview {
-  @MainActor in
-  let note = NoteModel(text: "This is a sample note for the preview.")
-  return EditNoteView(note: note).previewWithNotes(addExamples: false)
+  do {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try ModelContainer(for: NoteModel.self, configurations: config)
+    let note = NoteModel(text: "This is a preview note for NoteView.")
+    let context = container.mainContext
+    context.insert(note)
+    return EditNoteView(note: note)
+      .modelContainer(container)
+  } catch {
+    return Text("Failed to create preview: \(error.localizedDescription)")
+  }
 }

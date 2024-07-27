@@ -68,5 +68,5 @@ struct NoteInputView: View {
 
 #Preview {
   @MainActor in
-  return NoteInputView().previewWithNotes(addExamples: false)
+  return NoteInputView().previewWithExampleNotes()
 }

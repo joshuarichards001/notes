@@ -12,7 +12,7 @@ struct NoteView: View {
   @Bindable var note: NoteModel
   @Environment(\.modelContext) var context
 
-  func deleteNote(_ note: NoteModel) {
+  func deleteNote(note: NoteModel) {
     context.delete(note)
   }
 
@@ -25,7 +25,7 @@ struct NoteView: View {
     }
     .swipeActions(edge: .trailing, allowsFullSwipe: false) {
       Button(role: .destructive) {
-        deleteNote(note)
+        deleteNote(note: note)
       } label: {
         Label("Delete", systemImage: "trash")
       }
@@ -34,7 +34,7 @@ struct NoteView: View {
       Button(
         role: .destructive,
         action: {
-          deleteNote(note)
+          deleteNote(note: note)
         }
       ) {
         Label("Delete", systemImage: "trash")
@@ -44,7 +44,15 @@ struct NoteView: View {
 }
 
 #Preview {
-  @MainActor in
-  let note = NoteModel(text: "This is a preview note for NoteView.")
-  return NoteView(note: note).previewWithNotes(addExamples: false)
+  do {
+    let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let container = try ModelContainer(for: NoteModel.self, configurations: config)
+    let note = NoteModel(text: "This is a preview note for NoteView.")
+    let context = container.mainContext
+    context.insert(note)
+    return NoteView(note: note)
+      .modelContainer(container)
+  } catch {
+    return Text("Failed to create preview: \(error.localizedDescription)")
+  }
 }

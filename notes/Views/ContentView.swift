@@ -14,13 +14,12 @@ struct ContentView: View {
       NoteInputView()
     }
     .navigationTitle("Quick Notes")
-    .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))
   }
 }
 
 #Preview {
   @MainActor in
   NavigationView {
-    ContentView().previewWithNotes()
+    ContentView().previewWithExampleNotes()
   }
 }

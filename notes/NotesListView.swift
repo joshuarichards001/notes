@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NotesListView: View {
-    @Binding var notes: Array<NoteModel>
+    @Environment(\.modelContext) var context
+    @Query(sort: \NoteModel.timestamp) var notes: [NoteModel] = []
     
     func deleteNote(_ note: NoteModel) {
-        if let index = notes.firstIndex(where: { $0.id == note.id }) {
-            notes.remove(at: index)
-        }
+        context.delete(note)
     }
     
     var body: some View {
@@ -54,11 +54,5 @@ struct NotesListView: View {
 }
 
 #Preview {
-    @State var previewNotes = [
-        NoteModel(text: "Sample note 1"),
-        NoteModel(text: "Sample note 2"),
-        NoteModel(text: "Sample note 3")
-    ]
-    
-    return NotesListView(notes: $previewNotes)
+    return NotesListView()
 }

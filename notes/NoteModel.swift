@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
+@Model
 class NoteModel: Identifiable {
     let text: String
     let timestamp: Date

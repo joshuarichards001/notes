@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct NoteInputView: View {
+    @Environment(\.modelContext) var context
     @State private var inputText = ""
     @FocusState private var isInputFocused: Bool
-    var addNote: (NoteModel) -> Void
     
     var body: some View {
         HStack {
@@ -20,7 +20,7 @@ struct NoteInputView: View {
             Button(action: {
                 if !inputText.isEmpty {
                     let newNote = NoteModel(text: inputText)
-                    addNote(newNote)
+                    context.insert(newNote)
                     inputText = ""
                 }
             }) {
@@ -42,7 +42,5 @@ struct NoteInputView: View {
 }
 
 #Preview {
-    NoteInputView(addNote: { note in
-        print("Note Added")
-    })
+    NoteInputView()
 }

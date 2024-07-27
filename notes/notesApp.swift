@@ -6,14 +6,22 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct notesApp: App {
+    let container: ModelContainer = {
+        let schema = Schema([NoteModel.self])
+        let container = try! ModelContainer(for: schema, configurations: [])
+        return container
+    }()
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 ContentView()
             }
         }
+        .modelContainer(container)
     }
 }

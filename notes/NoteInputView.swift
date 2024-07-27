@@ -42,9 +42,12 @@ struct NoteInputView: View {
       RoundedRectangle(cornerRadius: 10)
         .stroke(Color(UIColor.systemFill), lineWidth: 1)
     )
-    .shadow(color: Color(UIColor.opaqueSeparator), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-    .shadow(color: Color(UIColor.opaqueSeparator), radius: 10)
-    .shadow(color: Color(UIColor.opaqueSeparator), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+    .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
+    .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
+    .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
+    .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
+    .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
+    .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
     .onAppear {
       isInputFocused = true
     }

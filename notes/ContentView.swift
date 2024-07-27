@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
   var body: some View {
-    ZStack(alignment: .bottom) {
+    VStack() {
       NotesListView()
       NoteInputView()
-        .padding(.init(top: 8, leading: 18, bottom: 18, trailing: 18))
+        .padding(.init(top: 0, leading: 18, bottom: 18, trailing: 18))
     }
     .navigationTitle("Quick Notes")
     .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))

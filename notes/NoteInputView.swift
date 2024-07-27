@@ -38,6 +38,17 @@ struct NoteInputView: View {
         .onAppear {
             isInputFocused = true
         }
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 10, coordinateSpace: .local)
+                .onEnded { value in
+                    let isDragDownwards = value.translation.height > 0
+                    let isDragVertical = abs(value.translation.width) < abs(value.translation.height)
+                    
+                    if isDragDownwards && isDragVertical {
+                        isInputFocused = false
+                    }
+                }
+        )
     }
 }
 

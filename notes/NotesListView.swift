@@ -9,7 +9,7 @@ import SwiftData
 import SwiftUI
 
 struct NotesListView: View {
-  @Query(sort: \NoteModel.timestamp) var notes: [NoteModel] = []
+  @Query(sort: \NoteModel.createdTimestamp) var notes: [NoteModel] = []
   @State private var selectedNote: NoteModel?
 
   var body: some View {

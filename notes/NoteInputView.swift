@@ -14,7 +14,7 @@ struct NoteInputView: View {
 
   var body: some View {
     HStack {
-      TextField("Enter Note", text: $inputText, axis: .vertical)
+      TextField("Enter Note...", text: $inputText, axis: .vertical)
         .lineLimit(10)
         .focused($isInputFocused)
       Button(action: {
@@ -32,12 +32,19 @@ struct NoteInputView: View {
           .background(Color.indigo)
           .clipShape(RoundedRectangle(cornerRadius: 8))
       }
+      .opacity(inputText.isEmpty ? 0 : 1)
+      .animation(.easeInOut(duration: 0.5), value: !inputText.isEmpty)
     }
     .padding(8)
-    .border(Color(UIColor.systemFill))
     .background(Color(UIColor.secondarySystemGroupedBackground))
     .clipShape(RoundedRectangle(cornerRadius: 10))
-    .shadow(color: Color.gray.opacity(0.2), radius: 5, x: 0, y: 0)
+    .overlay(
+      RoundedRectangle(cornerRadius: 10)
+        .stroke(Color(UIColor.systemFill), lineWidth: 1)
+    )
+    .shadow(color: Color(UIColor.opaqueSeparator), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+    .shadow(color: Color(UIColor.opaqueSeparator), radius: 10)
+    .shadow(color: Color(UIColor.opaqueSeparator), radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     .onAppear {
       isInputFocused = true
     }

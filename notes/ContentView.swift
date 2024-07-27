@@ -11,7 +11,8 @@ struct ContentView: View {
   var body: some View {
     ZStack(alignment: .bottom) {
       NotesListView()
-      NoteInputView().padding()
+      NoteInputView()
+        .padding(.init(top: 8, leading: 18, bottom: 18, trailing: 18))
     }
     .navigationTitle("Quick Notes")
     .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))

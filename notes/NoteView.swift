@@ -19,7 +19,7 @@ struct NoteView: View {
   var body: some View {
     VStack(alignment: .leading) {
       Text(note.text)
-      Text(note.timestamp.formatted(date: .abbreviated, time: .shortened))
+      Text(note.createdTimestamp.formatted(date: .abbreviated, time: .shortened))
         .font(.caption)
         .foregroundColor(.gray)
     }

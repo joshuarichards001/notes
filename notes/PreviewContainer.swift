@@ -14,8 +14,9 @@ struct PreviewContainer {
 
   init() {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
+    let schema = Schema([NoteModel.self])
     do {
-      container = try ModelContainer(for: NoteModel.self, configurations: config)
+      container = try ModelContainer(for: schema, configurations: config)
     } catch {
       fatalError("Could not create ModelContainer: \(error)")
     }

@@ -10,11 +10,11 @@ import SwiftData
 
 @Model
 class NoteModel: Identifiable {
-    var text: String
-    let timestamp: Date
-    
-    init(text: String) {
-        self.text = text
-        self.timestamp = Date()
-    }
+  var text: String
+  let timestamp: Date
+
+  init(text: String) {
+    self.text = text
+    self.timestamp = Date()
+  }
 }

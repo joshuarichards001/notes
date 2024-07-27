@@ -22,6 +22,7 @@ struct NoteInputView: View {
                     let newNote = NoteModel(text: inputText)
                     context.insert(newNote)
                     inputText = ""
+                    isInputFocused = false
                 }
             }) {
                 Image(systemName: "arrow.up")
@@ -53,5 +54,6 @@ struct NoteInputView: View {
 }
 
 #Preview {
-    NoteInputView()
+    @MainActor in
+    return NoteInputView().previewWithNotes(addExamples: false)
 }

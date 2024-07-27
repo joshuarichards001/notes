@@ -10,7 +10,7 @@ import SwiftData
 
 @Model
 class NoteModel: Identifiable {
-    let text: String
+    var text: String
     let timestamp: Date
     
     init(text: String) {

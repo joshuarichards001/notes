@@ -9,36 +9,16 @@ import SwiftUI
 import SwiftData
 
 struct NotesListView: View {
-    @Environment(\.modelContext) var context
     @Query(sort: \NoteModel.timestamp) var notes: [NoteModel] = []
-    
-    func deleteNote(_ note: NoteModel) {
-        context.delete(note)
-    }
+    @State private var selectedNote: NoteModel?
     
     var body: some View {
         List {
             ForEach(notes) { note in
-                VStack(alignment: .leading) {
-                    Text(note.text)
-                    Text(note.timestamp.formatted(date: .abbreviated, time: .shortened))
-                        .font(.caption)
-                        .foregroundColor(.gray)
-                }
-                .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                    Button(role: .destructive) {
-                        deleteNote(note)
-                    } label: {
-                        Label("Delete", systemImage: "trash")
+                NoteView(note: note)
+                    .onTapGesture {
+                        selectedNote = note
                     }
-                }
-                .contextMenu {
-                    Button(role: .destructive, action: {
-                        deleteNote(note)
-                    }) {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
             }
         }
         .overlay {
@@ -50,9 +30,13 @@ struct NotesListView: View {
                 })
             }
         }
+        .sheet(item: $selectedNote) { note in
+            EditNoteView(note: note)
+        }
     }
 }
 
 #Preview {
-    return NotesListView()
+    @MainActor in
+    NotesListView().previewWithNotes()
 }

@@ -19,7 +19,8 @@ struct ContentView: View {
 }
 
 #Preview {
+    @MainActor in
     NavigationView {
-        ContentView()
+        ContentView().previewWithNotes()
     }
 }

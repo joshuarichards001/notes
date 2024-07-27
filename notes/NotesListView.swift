@@ -41,6 +41,15 @@ struct NotesListView: View {
                 }
             }
         }
+        .overlay {
+            if notes.isEmpty {
+                ContentUnavailableView(label: {
+                    Label("No Notes", systemImage: "note.text")
+                }, description: {
+                    Text("Add a note to get started.")
+                })
+            }
+        }
     }
 }
 

@@ -28,12 +28,12 @@ struct NoteInputView: View {
                     .foregroundColor(.white)
                     .fontWeight(.bold)
                     .padding(8)
-                    .background(Color.blue)
+                    .background(Color.indigo)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
         }
         .padding(8)
-        .background(Color(UIColor.systemBackground))
+        .background(Color(UIColor.secondarySystemGroupedBackground))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .onAppear {
             isInputFocused = true

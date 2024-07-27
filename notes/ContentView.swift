@@ -12,7 +12,6 @@ struct ContentView: View {
     VStack() {
       NotesListView()
       NoteInputView()
-        .padding(.init(top: 0, leading: 18, bottom: 18, trailing: 18))
     }
     .navigationTitle("Quick Notes")
     .background(Color(UIColor.systemGroupedBackground).edgesIgnoringSafeArea(.all))

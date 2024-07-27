@@ -48,6 +48,7 @@ struct NoteInputView: View {
     .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
     .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
     .shadow(color: Color(UIColor.systemGroupedBackground), radius: 12)
+    .padding(.init(top: 0, leading: 18, bottom: 18, trailing: 18))
     .onAppear {
       isInputFocused = true
     }
